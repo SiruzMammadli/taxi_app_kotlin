@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SimpleTaxiApp</string>
+    <string name="title_activity_initial_screen">InitialScreenActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>
