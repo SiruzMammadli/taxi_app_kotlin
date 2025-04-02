@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "car": {
+      "driver": {
+        "name": "Siruz"
+      },
+      "model": "Lorem ipsum",
+      "passengers": 3
+    },
+    "transport": {
+      "price": 115,
+      "currency": "tl"
+    }
+  },
+  {
+    "id": 2,
+    "car": {
+      "driver": {
+        "name": "Atabey"
+      },
+      "model": "Lorem ipsum",
+      "passengers": 1
+    },
+    "transport": {
+      "price": 150,
+      "currency": "tl"
+    }
+  }
+]

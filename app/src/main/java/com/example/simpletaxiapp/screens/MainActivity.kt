@@ -19,8 +19,8 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.simpletaxiapp.components.main_activity.bottom_sheet.MainActivityBottomSheetContent
-import com.example.simpletaxiapp.components.main_activity.bottom_sheet.MainActivityOverBottomSheet
+import com.example.simpletaxiapp.components.main_activity.bottom_sheet.BottomSheetContent
+import com.example.simpletaxiapp.components.main_activity.bottom_sheet.OverBottomSheet
 import com.example.simpletaxiapp.components.main_activity.drawer.SideMenuDrawer
 import com.example.simpletaxiapp.screens.ui.theme.SimpleTaxiAppTheme
 
@@ -53,9 +53,9 @@ fun MainScreen() {
                             .background(Color.LightGray),
                     )
                 },
-                sheetContent = { MainActivityBottomSheetContent() },
+                sheetContent = { BottomSheetContent() },
             ) {
-                MainActivityOverBottomSheet(drawerState);
+                OverBottomSheet(drawerState);
             }
         }
     }

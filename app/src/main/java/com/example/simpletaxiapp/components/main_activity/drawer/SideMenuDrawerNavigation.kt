@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.simpletaxiapp.R
@@ -30,6 +31,11 @@ data class NavigationDrawerItem(
 val drawerMenuItems = listOf(
     NavigationDrawerItem(1, "Sürüşlerim", R.drawable.bookmark_filled_icon),
     NavigationDrawerItem(2, "Cüzdanım", R.drawable.wallet_filled_icon),
+    NavigationDrawerItem(3, "Acil Durum Kişileri", R.drawable.phone_filled_icon),
+    NavigationDrawerItem(4, "Bildirimler", R.drawable.notification_filled_icon),
+    NavigationDrawerItem(5, "Davetler", R.drawable.gift_filled_icon),
+    NavigationDrawerItem(6, "Diller", R.drawable.globe_filled_icon),
+    NavigationDrawerItem(7, "Hakkında", R.drawable.status_info_filled_icon),
 )
 
 @Composable
@@ -40,7 +46,7 @@ fun SideMenuDrawerNavigation() {
             .fillMaxHeight(1f)
             .background(Color.White)
     ) {
-        drawerMenuItems.map { item -> SideMenuDrawerNavigationItem(item) }
+        drawerMenuItems.forEach { item -> SideMenuDrawerNavigationItem(item) }
     }
 }
 
@@ -50,6 +56,7 @@ fun SideMenuDrawerNavigationItem(item: NavigationDrawerItem) {
         horizontalArrangement = Arrangement.spacedBy(40.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
+            .fillMaxWidth()
             .padding(16.dp)
     ) {
         Image(

@@ -47,9 +47,9 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.gson)
     implementation(libs.maps.compose)
-    implementation("com.google.android.gms:play-services-maps:19.1.0")
+    implementation(libs.play.services.maps)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
