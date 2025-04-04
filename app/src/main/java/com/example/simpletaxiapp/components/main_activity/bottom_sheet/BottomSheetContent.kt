@@ -1,6 +1,7 @@
 package com.example.simpletaxiapp.components.main_activity.bottom_sheet
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,8 +10,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +37,13 @@ fun BottomSheetContent() {
     val transportData by produceState<List<TransportData>>(initialValue = emptyList<TransportData>()) {
         value = fetchJsonData(context, "drivers_data.json")
     }
+    var (activeTransportId, setActiveTransportId) = rememberSaveable { mutableIntStateOf(-1) }
+
+    LaunchedEffect(transportData) {
+        if (transportData.isNotEmpty()) {
+            setActiveTransportId(transportData[0].id)
+        }
+    }
 
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
@@ -43,7 +56,13 @@ fun BottomSheetContent() {
                 .padding(8.dp)
         ) {
             transportData.forEach { data ->
-                BottomSheetDriverItem(data)
+                BottomSheetDriverItem(
+                    data, activeTransportId,
+                    Modifier
+                        .clickable(onClick = {
+                            setActiveTransportId(data.id)
+                        })
+                )
             }
         }
         Box(

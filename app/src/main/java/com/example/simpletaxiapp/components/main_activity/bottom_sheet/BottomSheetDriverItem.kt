@@ -27,14 +27,19 @@ import com.example.simpletaxiapp.R
 import com.example.simpletaxiapp.dtos.TransportData
 
 @Composable
-fun BottomSheetDriverItem(item: TransportData) {
+fun BottomSheetDriverItem(item: TransportData, activeTransportId: Int, modifier: Modifier? = null) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(6.dp))
-            .border(width = 1.dp, color = Color(0xFF13365C), shape = RoundedCornerShape(6.dp))
-            .background(Color(0xFFE1E6EA))
-            .padding(4.dp),
+            .border(
+                width = 1.dp,
+                color = if (item.id == activeTransportId) Color(0xFF13365C) else Color(0xFF8C8C8C),
+                shape = RoundedCornerShape(6.dp)
+            )
+            .then(if (item.id == activeTransportId) Modifier.background(Color(0xFFE1E6EA)) else Modifier)
+            .padding(4.dp)
+            .then(modifier ?: Modifier)
     ) {
         Box {
             Image(
