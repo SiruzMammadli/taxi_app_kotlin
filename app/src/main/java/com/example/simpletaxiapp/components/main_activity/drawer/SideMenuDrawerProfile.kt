@@ -50,7 +50,7 @@ fun SideMenuDrawerProfile() {
                 painter = painterResource(id = R.drawable.avatar),
                 contentDescription = "avatar",
                 modifier = Modifier
-                    .size(width = 100.dp, height = 100.dp)
+                    .size(100.dp)
             )
         }
         Column(

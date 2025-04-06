@@ -3,6 +3,7 @@ package com.example.simpletaxiapp.components.main_activity.bottom_sheet
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,7 +27,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.simpletaxiapp.R
@@ -75,39 +75,62 @@ fun OverBottomSheet(drawerState: DrawerState) {
             )
         }
         Box {
-            Image(
-                painter = painterResource(id = R.drawable.map_example),
-                contentDescription = "map_example",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-            )
+            SimpleMapImage()
+//            GoogleMap()
+
             Column(
                 modifier = Modifier
                     .align(Alignment.TopCenter)
                     .padding(top = 16.dp)
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(Color.White)
-                    .padding(10.dp)
-                    .fillMaxWidth(.9f)
+                    .fillMaxWidth(.9f),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Text("meyveye dokunma")
+                OverBottomSheetLocation()
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.End)
+                        .clip(RoundedCornerShape(6.dp))
+                        .background(Color.White)
+                        .padding(6.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.waypoint_filled_icon),
+                        contentDescription = "waypoint_icon",
+                        modifier = Modifier
+                            .size(40.dp),
+                    )
+                }
             }
-//                    val cameraPositionState = rememberCameraPositionState() {
-//                        position = CameraPosition.fromLatLngZoom(LatLng(40.4093, 49.8671), 12f)
-//                    }
-//                    GoogleMap(
-//                        modifier = Modifier
-//                            .fillMaxSize(),
-//                        cameraPositionState = cameraPositionState
-//                    ) {
-//                        Marker(
-//                            state = rememberMarkerState(position = LatLng(40.4093, 49.8671)),
-//                            title = "Bakü",
-//                            snippet = "Azerbaycan'ın Başkenti"
-//                        )
-//                    }
         }
+    }
+}
+
+@Composable
+fun SimpleMapImage() {
+    Image(
+        painter = painterResource(id = R.drawable.map_example),
+        contentDescription = "map_example",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+    )
+}
+
+@Composable
+fun GoogleMap() {
+    val cameraPositionState = rememberCameraPositionState() {
+        position = CameraPosition.fromLatLngZoom(LatLng(40.4093, 49.8671), 12f)
+    }
+    GoogleMap(
+        modifier = Modifier
+            .fillMaxSize(),
+        cameraPositionState = cameraPositionState
+    ) {
+        Marker(
+            state = rememberMarkerState(position = LatLng(40.4093, 49.8671)),
+            title = "Bakü",
+            snippet = "Azerbaycan'ın Başkenti"
+        )
     }
 }
